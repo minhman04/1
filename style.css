@@ -1,0 +1,256 @@
+/* ===== NỀN: ĐỔI LINK ẢNH/VIDEO Ở ĐÂY ===== */
+.background-layer {
+    position: fixed;
+    z-index: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    /* ẢNH nền có thể thay ở đây */
+   
+    /* VIDEO nền demo có thể tích hợp như dưới (bỏ comment để dùng video): */
+    /* overflow: hidden; */
+  }
+  /* Nếu muốn dùng video nền, thêm vào index.html đoạn này:
+    <video class="background-video" autoplay loop muted playsinline>
+      <source src="YOUR_VIDEO_URL_HERE.mp4" type="video/mp4">
+    </video>
+  Và CSS:
+  .background-video {
+    position: fixed; z-index: 0; top:0;left:0;width:100vw;height:100vh;object-fit:cover;pointer-events:none; }
+  */
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    background: #1a090e;
+    overflow-x: hidden;
+  }
+  .background-video {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  
+  .browser-window {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 40px auto 24px auto;
+    border-radius: 24px;
+    background: rgba(40,20,30,0.001);
+    box-shadow: 0 8px 50px 16px #000b;
+    backdrop-filter: blur(16px) saturate(1.2);
+    padding: 22px 28px 20px 28px;
+    border: 1px solid rgba(160,80,60,0.17);
+  }
+  
+  .browser-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1.2px solid rgba(255,255,255,0.08);
+  }
+  .window-controls {
+    display: flex;
+    gap: 6px;
+    margin-right: 15px;
+  }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%; display: inline-block;
+    margin-top: 1px;
+  }
+  .red { background: #f65a57; border: 1px solid #d22e2a; }
+  .yellow { background: #ffd65b; border: 1px solid #d6a800; }
+  .green { background: #3eda63; border: 1px solid #167b2b; }
+  
+  .tabs { display: flex; gap: 6px; }
+  .tabs button {
+    background: rgba(65,31,35,0.80);
+    color: #e0cfc4; font-weight: 500;
+    border: none; border-radius: 8px;
+    padding: 5px 18px;
+    font-size: 1rem; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .tabs button:hover, .tabs button:focus {
+    background: #a94b44;
+    color: #fff;
+  }
+  .auth-form {
+    display: flex; gap: 6px; margin-left: auto;
+  }
+  .auth-form input {
+    background: rgba(230,210,200,0.13);
+    border: 1.2px solid #353a3a80;
+    border-radius: 8px;
+    color: #fff; font-size: 1rem;
+    padding: 5px 9px;
+    outline: none;
+  }
+  .auth-form input::placeholder { color: #e0cfc4c2; letter-spacing: .04em; }
+  .auth-form button {
+    background: rgba(50,40,29,0.7);
+    color: #e0cfc4;
+    border: none; border-radius: 8px;
+    padding: 4.5px 14px;
+    font-size: 0.94rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background .2s;
+  }
+  .auth-form button:hover { background: #a94b44; color: #fff; }
+  
+  .browser-search-bar {
+    margin-top: 16px; margin-bottom: 10px;
+  }
+  .browser-search-bar input {
+    width: 100%;
+    background: rgba(210,190,170,0.18);
+    border-radius: 8px; border: 1px solid #8882;
+    padding: 7px 1.1em; font-size: 1.03rem;
+    color: #e0cfc4; outline: none;
+  }
+  .browser-search-bar input::placeholder { color: #e0cfc4ab; }
+  
+  .browser-bookmarks-bar {
+    display: flex; align-items: center;
+    gap: 10px; margin-top: 8px; margin-bottom: 7px;
+  }
+  .bookmark {
+    display: flex; align-items: center; gap: 4px;
+    background: rgba(50,50,50,.27);
+    color: #fff; border: none; border-radius: 8px;
+    padding: 2px 14px 2px 7px; font-size: 1rem;
+    cursor: pointer; font-weight: 500;
+    outline: none; transition: background .18s;
+  }
+  .bookmark img { width: 18px; height: 18px; margin-right: 6px; }
+  .bookmark:hover { background: #406ec6cc; color: #fff; }
+  .music-player { margin-left: auto; display: flex; gap: 6px; }
+  .music-player button { background: transparent; border:none; color:#fff;font-size:1.33rem;cursor:pointer;transition:color .15s;}
+  .music-player button:hover{color:#ffd65b;}
+  
+  .browser-filters { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+  .browser-filters button {
+    background: rgba(120,40,40,0.5);
+    color: #f9f5e9;
+    border: none; border-radius: 7px;
+    padding: 4.7px 20px; font-size: .98rem; font-weight: 500;
+    cursor: pointer;
+    transition: background .18s;
+  }
+  .browser-filters button.active, .browser-filters button:hover {
+    background: #a94b44;
+    color: #fff;
+  }
+  .category-select {
+    background: rgba(76, 40, 54, 0.44);
+    border: 1.2px solid #799f7b81;
+    color: #e0cfc4;
+    border-radius: 8px;
+    padding: 4.5px 12px;
+    font-size: .97rem;
+    margin-left: 12px;
+  }
+  
+  .browser-content {
+    margin-top: 25px;
+    /* Chứa gallery sản phẩm, hiện đang để trống */
+    min-height: 160px;
+  }
+  
+  @media (max-width: 800px) {
+    .browser-window {
+      max-width: 98vw; padding: 12px 7px;
+    }
+    .browser-top-bar { flex-wrap: wrap; gap: 8px; }
+    .auth-form,.tabs{flex-wrap:wrap;gap:4px;}
+    .browser-bookmarks-bar, .browser-filters { flex-wrap: wrap; }
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 28px 18px;
+  }
+  
+  .gallery-item {
+    background: rgba(40,20,30, 0.38);
+    border: 1.5px solid rgba(160,80,60,0.12);
+    border-radius: 20px;
+    box-shadow: 0 4px 28px 0 #0006;
+    overflow: hidden;
+    transition: box-shadow .2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* responsive */
+  }
+  .gallery-item:hover { box-shadow: 0 6px 32px 2px #000a;}
+  
+  .gallery-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5/3.3;
+    overflow: hidden;
+    background: #222;
+    border-bottom: 1px solid rgba(200,180,180,0.11);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(0.97);
+    transition: transform .27s;
+  }
+  .gallery-item:hover .gallery-img img { transform: scale(1.04); }
+  
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(32,4,35,0.50);
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    opacity: 0; gap: 12px;
+    transition: opacity .2s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  
+  .gallery-btn {
+    background: #406ec6;
+    color: #fff;
+    border-radius: 7.5px;
+    padding: 5px 17px;
+    font-size: 1rem; font-weight: 500;
+    margin: 0 4px;
+    text-decoration: none;
+    transition: background .17s;
+  }
+  .gallery-btn:hover {
+    background: #a94b44;
+    color: #fff;
+  }
+  
+  .gallery-info {
+    padding: 13px 17px 13px 17px;
+    font-size: .98rem;
+  }
+  .gallery-info h3 {
+    margin: 0 0 7px 0; font-size: 1rem; color: #ffe3c7;
+    display: flex; align-items: center; gap: 6px;
+    font-weight: 600;
+  }
+  .view-count {
+    color: #79a0c0; background: #25285367; border-radius: 8px;
+    padding: 1px 9px; font-size: .98em;
+    margin-left: 4px;
+  }
+  .gallery-info p { margin: 0 0 7px 0; color: #ccc2; font-size: .98em;}
+  .gallery-links {
+    display: flex; align-items: center; gap: 13px; font-size: .98em;
+  }
+  .price.free { color: #7cc67d;}
+  .price { font-weight: 500;}
